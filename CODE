@@ -1,0 +1,28 @@
+-- Function to create a head highlight effect
+local function highlightHead(head)
+    local highlight = Instance.new("SelectionBox")
+    highlight.Parent = head
+    highlight.Adornee = head
+    highlight.Color3 = Color3.new(1, 1, 0) -- Yellow color
+    highlight.LineThickness = 0.05
+    highlight.Transparency = 0.5
+end
+
+-- Function to find and highlight heads
+local function findAndHighlightHeads()
+    for _, player in pairs(game.Players:GetPlayers()) do
+        local character = player.Character
+        if character then
+            local head = character:FindFirstChild("Head")
+            if head then
+                highlightHead(head)
+            end
+        end
+    end
+end
+
+-- Call the function periodically (e.g., every second)
+while true do
+    findAndHighlightHeads()
+    wait(1)  -- Adjust the interval as needed
+end
